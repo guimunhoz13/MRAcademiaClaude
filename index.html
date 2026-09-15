@@ -83,7 +83,7 @@
         </div>
         <div class="stat">
           <dt>Agora</dt>
-          <dd class="status-open"><span class="status-dot"></span> Aberto · fecha às 22h</dd>
+          <dd class="status-open" id="statusNow"><span class="status-dot" id="statusDot"></span> <span id="statusLabel">Seg–qui 6h–22h · sex 6h–21h30 · sáb 8h–12h</span></dd>
         </div>
       </dl>
     </div>
@@ -204,11 +204,19 @@
           Araçatuba - SP, 16072-455
         </address>
 
-        <ul class="local-details">
-          <li><strong>Telefone:</strong> <a href="tel:+551836228886">(18) 3622-8886</a></li>
-          <li><strong>Horário:</strong> Aberto agora · fecha às 22h</li>
-          <li><strong>Dica:</strong> costuma ficar mais vazia por volta das 8h — tempo médio de permanência de 45 min a 1h30.</li>
+        <p class="local-phone"><strong>Telefone:</strong> <a href="tel:+551836228886">(18) 3622-8886</a></p>
+
+        <ul class="hours-table" id="hoursTable">
+          <li data-day="1"><span>Segunda</span><span>06:00–22:00</span></li>
+          <li data-day="2"><span>Terça</span><span>06:00–22:00</span></li>
+          <li data-day="3"><span>Quarta</span><span>06:00–22:00</span></li>
+          <li data-day="4"><span>Quinta</span><span>06:00–22:00</span></li>
+          <li data-day="5"><span>Sexta</span><span>06:00–21:30</span></li>
+          <li data-day="6"><span>Sábado</span><span>08:00–12:00</span></li>
+          <li data-day="0"><span>Domingo</span><span>Fechado</span></li>
         </ul>
+
+        <p class="local-tip"><strong>Dica:</strong> costuma ficar mais vazia por volta das 8h — tempo médio de permanência de 45 min a 1h30.</p>
 
         <div class="local-cta">
           <a class="btn btn-primary" href="https://wa.me/551836228886?text=Ol%C3%A1%21%20Vi%20o%20site%20da%20MR%20Academia%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener">

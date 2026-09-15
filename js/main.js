@@ -20,6 +20,59 @@
     });
   }
 
+  /* ---------- horário de funcionamento (dados reais da academia) ---------- */
+  var HOURS = [
+    null, // domingo — fechado
+    { open: [6, 0], close: [22, 0] }, // segunda
+    { open: [6, 0], close: [22, 0] }, // terça
+    { open: [6, 0], close: [22, 0] }, // quarta
+    { open: [6, 0], close: [22, 0] }, // quinta
+    { open: [6, 0], close: [21, 30] }, // sexta
+    { open: [8, 0], close: [12, 0] }, // sábado
+  ];
+  var DAY_NAMES = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+
+  function formatHour(h, m) {
+    return m === 0 ? h + "h" : h + "h" + String(m).padStart(2, "0");
+  }
+
+  function getStatus(now) {
+    var day = now.getDay();
+    var nowMin = now.getHours() * 60 + now.getMinutes();
+    var today = HOURS[day];
+
+    if (today) {
+      var openMin = today.open[0] * 60 + today.open[1];
+      var closeMin = today.close[0] * 60 + today.close[1];
+      if (nowMin >= openMin && nowMin < closeMin) {
+        return { open: true, text: "Aberto agora · fecha às " + formatHour(today.close[0], today.close[1]) };
+      }
+      if (nowMin < openMin) {
+        return { open: false, text: "Fechado agora · abre hoje às " + formatHour(today.open[0], today.open[1]) };
+      }
+    }
+
+    for (var i = 1; i <= 7; i++) {
+      var d = (day + i) % 7;
+      if (HOURS[d]) {
+        var label = i === 1 ? "amanhã" : DAY_NAMES[d];
+        return { open: false, text: "Fechado agora · abre " + label + " às " + formatHour(HOURS[d].open[0], HOURS[d].open[1]) };
+      }
+    }
+    return { open: false, text: "Fechado" };
+  }
+
+  var statusLabel = document.getElementById("statusLabel");
+  var statusDot = document.getElementById("statusDot");
+  if (statusLabel) {
+    var status = getStatus(new Date());
+    statusLabel.textContent = status.text;
+    if (statusDot && !status.open) statusDot.classList.add("is-closed");
+  }
+
+  var todayRow = document.querySelector('.hours-table li[data-day="' + new Date().getDay() + '"]');
+  if (todayRow) todayRow.classList.add("is-today");
+
   /* ---------- motion (only if GSAP loaded and motion allowed) ---------- */
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

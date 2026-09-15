@@ -261,6 +261,11 @@ a{ color: inherit; text-decoration: none; }
   box-shadow: 0 0 0 0 rgba(62,165,91,.5);
   animation: pulse 2s infinite;
 }
+.status-dot.is-closed{
+  background: var(--gray);
+  animation: none;
+  box-shadow: none;
+}
 @keyframes pulse{
   0%{ box-shadow: 0 0 0 0 rgba(62,165,91,.45); }
   70%{ box-shadow: 0 0 0 8px rgba(62,165,91,0); }
@@ -390,9 +395,31 @@ a{ color: inherit; text-decoration: none; }
 .local-info h2{ font-size: clamp(32px, 4.4vw, 52px); margin-bottom: 24px; }
 .local-info address{ font-style: normal; font-size: 18px; margin-bottom: 24px; }
 
-.local-details{ list-style: none; margin: 0 0 32px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.local-details li{ font-size: 15px; color: var(--ink-soft); }
-.local-details a{ color: var(--blue); font-weight: 700; }
+.local-phone{ font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; }
+.local-phone a{ color: var(--blue); font-weight: 700; }
+
+.hours-table{
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(28,27,27,.14);
+  border-bottom: 1px solid rgba(28,27,27,.14);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hours-table li{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.hours-table li span:first-child{ font-weight: 600; color: var(--ink); }
+.hours-table li.is-today{ color: var(--ink); }
+.hours-table li.is-today span:first-child{ color: var(--blue); }
+.hours-table li.is-today span:last-child{ font-weight: 700; color: var(--ink); }
+
+.local-tip{ font-size: 14px; color: var(--gray); margin-bottom: 32px; max-width: 44ch; }
 
 .local-cta{ display: flex; gap: 16px; flex-wrap: wrap; }
 
